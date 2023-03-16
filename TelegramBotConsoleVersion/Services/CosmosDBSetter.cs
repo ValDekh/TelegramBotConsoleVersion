@@ -41,7 +41,7 @@ namespace TelegramBotConsoleVersion.Services
             _container = await _database.CreateContainerIfNotExistsAsync("receivedMessages", "/MessageContainer_id");
         }
 
-        public static async Task Creator()
+        public async Task Creator()
         {
             ClientInitializer();
             await CreateDbAsync();
@@ -49,13 +49,13 @@ namespace TelegramBotConsoleVersion.Services
         }
 
 
-        public static async Task AddItemsToContainerAsync(Update update)
+        public async Task AddItemsToContainerAsync(Update update)
         {
             MessageInfo item = new MessageInfo
             {
                 Id = Guid.NewGuid().ToString(),
                 MessageContainer_id = Guid.NewGuid().ToString(),
-                Message_id = update?.Message.MessageId,
+                Message_id = update.Message.MessageId,
                 Message_text = update.Message.Text,
                 UserId = update.Message.From.Id,
                 Username = update.Message.From.Username,
