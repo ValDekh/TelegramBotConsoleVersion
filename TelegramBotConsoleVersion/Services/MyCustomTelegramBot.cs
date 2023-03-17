@@ -63,8 +63,8 @@ namespace TelegramBotConsoleVersion.Services
 
         public TelegramBotClient GetTelegramBotClient()
         {
-            var token = "6058383219:AAH8O4pcNxHzQ6jG9HntuYJ_U3kU58WE5IE";
-            // var token = AppConfig["AppConfig:Token"];
+            //var token = "6058383219:AAH8O4pcNxHzQ6jG9HntuYJ_U3kU58WE5IE";
+             var token = AppConfig["AppConfig:Token"];
             if (token is null)
             {
                 throw new ArgumentException("Can't get a token");
