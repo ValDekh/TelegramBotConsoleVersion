@@ -10,9 +10,7 @@ namespace TelegramBotConsoleVersion.Services
 {
     public interface ICosmosDBSetter
     {
-        async Task Creator() { }
-        async Task AddItemsToContainerAsync(Update update) { }
-        private static async Task CreateDbAsync() { }
-        private static async Task CreateContainerAsync() { }
+        Task Creator();
+        Task AddItemsToContainerAsync(Update update);
     }
 }

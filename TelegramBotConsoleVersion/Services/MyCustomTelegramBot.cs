@@ -16,7 +16,6 @@ using Telegram.Bot.Exceptions;
 namespace TelegramBotConsoleVersion.Services
 {
     public class MyCustomTelegramBot : IMyCustomTelegramBot
-
     {
         private static IConfiguration? AppConfig { get; set; }
         private static ICosmosDBSetter? CosmosDBSetter { get; set; }
@@ -26,19 +25,20 @@ namespace TelegramBotConsoleVersion.Services
         {
             AppConfig = configuration;
             CosmosDBSetter = dbSetter;
+            
         }
 
-        public static async Task Run()
+        public async Task Run()
         {
-            
+
             await CosmosDBSetter?.Creator();
             TelegramBotClient telegramClient = GetTelegramBotClient();
             telegramClient.StartReceiving(Update, Error);
 
-      
+
         }
 
-       private async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        private async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             if (update?.Message?.Text != null)
             {
@@ -62,9 +62,10 @@ namespace TelegramBotConsoleVersion.Services
             return Task.CompletedTask;
         }
 
-        private static TelegramBotClient GetTelegramBotClient()
+        public TelegramBotClient GetTelegramBotClient()
         {
-            var token = AppConfig["AppConfig:Token"];
+            //var token = "6058383219:AAH8O4pcNxHzQ6jG9HntuYJ_U3kU58WE5IE";
+             var token = AppConfig["AppConfig:Token"];
             if (token is null)
             {
                 throw new ArgumentException("Can't get a token");

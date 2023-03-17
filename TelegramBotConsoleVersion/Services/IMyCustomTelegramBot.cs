@@ -4,8 +4,8 @@ namespace TelegramBotConsoleVersion.Services
 {
     public interface IMyCustomTelegramBot
     {
-        public static async Task Run() { }
-
+        Task Run();
+        TelegramBotClient GetTelegramBotClient();
 
     }
 }
