@@ -25,6 +25,7 @@ namespace TelegramBotConsoleVersion.Services
         {
             AppConfig = configuration;
             CosmosDBSetter = dbSetter;
+            
         }
 
         public async Task Run()

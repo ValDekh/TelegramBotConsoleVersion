@@ -16,6 +16,9 @@ using TelegramBotConsoleVersion.Services;
 using IHost host = CreateHostBuilder(args).Build();
 
 _ = host.Services.GetService<MyCustomTelegramBot>();
+await StartBot(host.Services);
+
+
 
 await host.RunAsync();
 
@@ -26,3 +29,16 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
     .ConfigureServices((_, services) =>
             services.AddSingleton<ICosmosDBSetter, CosmosDBSetter>()
                     .AddSingleton<MyCustomTelegramBot>());
+
+
+
+static async Task StartBot(IServiceProvider services)
+{
+    using IServiceScope serviceScope = services.CreateScope();
+    IServiceProvider provider = serviceScope.ServiceProvider;
+    MyCustomTelegramBot bot = provider.GetRequiredService<MyCustomTelegramBot>();
+    await bot.Run();
+}
+
+
+
